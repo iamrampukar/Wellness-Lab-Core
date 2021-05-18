@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PatientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,5 +24,6 @@ Route::get('/', function () {
 // })->middleware(['auth'])->name('dashboard');
 
 Route::resource('/dashboard',DashboardController::class);
+Route::resource('/patient', PatientController::class);
 
 require __DIR__.'/auth.php';
