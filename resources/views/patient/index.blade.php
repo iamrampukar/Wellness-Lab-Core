@@ -33,9 +33,9 @@
 									<th>Gender</th>
 									<th>Mobile</th>
 									<th>LabId</th>
-									<th>Sample No</th>
+									<!-- <th>Sample No</th>
 									<th>Receiving Date</th>
-									<th>Reporting Date</th>
+									<th>Reporting Date</th> -->
 									<th style="width: 40px"></th>
 								</tr>
 							</thead>
@@ -47,9 +47,9 @@
 									<td>{{ $value->gender==0 ? 'Female' : 'Male' }}</td>
 									<td>{{ $value->mobile1 }}</td>
 									<td>{{ $value->lab_id }}</td>
-									<td>{{ $value->sample_no }}</td>
+									<!-- <td>{{ $value->sample_no }}</td>
 									<td>{{ $value->receiving_date }}</td>
-									<td>{{ $value->reporting_date }}</td>
+									<td>{{ $value->reporting_date }}</td> -->
 									<td>
 										<a href="{{ route('patient.show',$value->id) }}" class="btn btn-info btn-xs"><i class="far fa-eye"></i></a>
 										<a href="" class="btn btn-primary btn-xs"><i class="far fa-edit"></i></a>

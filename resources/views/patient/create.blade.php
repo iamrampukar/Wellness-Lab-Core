@@ -11,15 +11,6 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-              @endif
               <form method="post" action="{{ route('patient.store') }}">
                 @csrf
                 <div class="card-body">
@@ -28,22 +19,28 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="firstName">First Name</label>
-                                <input type="text" name="first_name" class="form-control form-control-sm is-invalid" placeholder="First Name ">
-                                <span class="error invalid-feedback">Please enter a email address</span>
+                                <input type="text" name="first_name" class="form-control form-control-sm @error('first_name') is-invalid @enderror" placeholder="First Name " value="{{ old('first_name') }}">
+                                @if($errors->has('first_name'))
+                                    <span class="error invalid-feedback">{{ $errors->first('first_name') }}</span>
+                                @endif
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="lastName">Middle Name</label>
-                                <input type="text" name="middle_name" class="form-control form-control-sm is-invalid" placeholder="Middle Name ">
-                                <span class="error invalid-feedback">Please enter a email address</span>
+                                <input type="text" name="middle_name" class="form-control form-control-sm @error('middle_name') is-invalid @enderror" placeholder="Middle Name" value="{{ old('middle_name') }}">
+                                @if($errors->has('middle_name'))
+                                    <span class="error invalid-feedback">{{ $errors->first('middle_name') }}</span>
+                                @endif
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="lastName">Last Name</label>
-                                <input type="text" name="last_name" class="form-control form-control-sm is-invalid" placeholder="Last Name ">
-                                <span class="error invalid-feedback">Please enter a email address</span>
+                                <input type="text" name="last_name" class="form-control form-control-sm @error('last_name') is-invalid @enderror" placeholder="Last Name" value="{{ old('last_name') }}">
+                                @if($errors->has('last_name'))
+                                    <span class="error invalid-feedback">{{ $errors->first('last_name') }}</span>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -53,28 +50,33 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="gender">Gender</label>
-                                <!-- <input type="text" name="gender" class="form-control form-control-sm is-invalid" placeholder="Gender...">
-                                <span class="error invalid-feedback">Please enter a email address</span> -->
-                                <select name="gender" class="form-control form-control-sm">
-                                    <option>--SELECT--</option>
+                                <select name="gender" class="form-control form-control-sm @error('gender') is-invalid @enderror">
+                                    <option value="">--SELECT--</option>
                                     <option value="0">Female</option>
                                     <option value="1">Male</option>
                                 </select>
-                                <span class="help-block">Help block with error</span>
+                                @if($errors->has('gender'))
+                                    <span class="help-block">{{ $errors->first('gender') }}</span>
+                                @endif
+                                
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="dateOfBirth">Date Of Birth</label>
-                                <input type="text" class="form-control form-control-sm is-invalid" name="dob" id="dateOfBirth" placeholder="Date Of Birth" value="">
-                                <span class="error invalid-feedback">Please enter a email address</span>
+                                <input type="text" class="form-control form-control-sm @error('dob') is-invalid @enderror" name="dob" id="dateOfBirth" placeholder="Date Of Birth" value="{{ old('dob') }}">
+                                @if($errors->has('gender'))
+                                    <span class="error invalid-feedback">{{ $errors->first('gender') }}</span>
+                                @endif
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="age">Age</label>
-                                <input type="number" name="age" class="form-control form-control-sm is-invalid" placeholder="Age... ">
-                                <span class="error invalid-feedback">Please enter a email address</span>
+                                <input type="number" name="age" class="form-control form-control-sm @error('age') is-invalid @enderror" placeholder="Age... " value="{{ old('age') }}">
+                                @if($errors->has('age'))
+                                    <span class="error invalid-feedback">{{ $errors->first('age') }}</span>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -84,22 +86,28 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="mobile1">Mobile No</label>
-                                <input type="text" name="mobile1" class="form-control form-control-sm is-invalid" placeholder="9849...">
-                                <span class="error invalid-feedback">Please enter a email address</span>
+                                <input type="text" name="mobile1" class="form-control form-control-sm @error('mobile1') is-invalid @enderror" placeholder="9849..." value="{{ old('mobile1') }}">
+                                @if($errors->has('mobile1'))
+                                    <span class="error invalid-feedback">{{ $errors->first('mobile1') }}</span>
+                                @endif
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="mobile2">Mobile No</label>
-                                <input type="text" name="mobile2" class="form-control form-control-sm is-invalid" placeholder="9849...">
-                                <span class="error invalid-feedback">Please enter a email address</span>
+                                <input type="text" name="mobile2" class="form-control form-control-sm @error('mobile2') is-invalid @enderror" placeholder="9849..." value="{{ old('mobile2') }}">
+                                @if($errors->has('mobile2'))
+                                    <span class="error invalid-feedback">{{ $errors->first('mobile2') }}</span>
+                                @endif
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="telephone">Telephone No</label>
-                                <input type="text" name="telephone" class="form-control form-control-sm is-invalid" placeholder="01-555...">
-                                <span class="error invalid-feedback">Please enter a email address</span>
+                                <input type="text" name="telephone" class="form-control form-control-sm @error('telephone') is-invalid @enderror" placeholder="01-555..." value="{{ old('telephone')}}">
+                                @if($errors->has('telephone'))
+                                    <span class="error invalid-feedback">{{ $errors->first('telephone') }}</span>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -109,28 +117,34 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="labId">Lab Id</label>
-                                <input type="text" name="lab_id" class="form-control form-control-sm is-invalid" placeholder="Lab Id">
-                                <span class="error invalid-feedback">Please enter a email address</span>
+                                <input type="text" name="lab_id" class="form-control form-control-sm @error('lab_id') is-invalid @enderror" placeholder="Lab Id" value="{{ old('lab_id') }}">
+                                @if($errors->has('lab_id'))
+                                    <span class="error invalid-feedback">{{ $errors->first('lab_id') }}</span>
+                                @endif
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="sampleNo">Sample No</label>
-                                <input type="text" name="sample_no" class="form-control form-control-sm is-invalid" placeholder="Sample No">
-                                <span class="error invalid-feedback">Please enter a email address</span>
+                                <input type="text" name="sample_no" class="form-control form-control-sm @error('sample_no') is-invalid @enderror" placeholder="Sample No" value="{{ old('sample_no') }}">
+                                @if($errors->has('sample_no'))
+                                    <span class="error invalid-feedback">{{ $errors->first('sample_no') }}</span>
+                                @endif
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="patientType">Patient Type</label>
-                                <select name="patient_type" class="form-control form-control-sm">
-                                    <option>--SELECT--</option>
+                                <select name="patient_type" class="form-control form-control-sm @error('patient_type') is-invalid @enderror">
+                                    <option value="">--SELECT--</option>
                                     <option>option 2</option>
                                     <option>option 3</option>
                                     <option>option 4</option>
                                     <option>option 5</option>
                                 </select>
-                                <span class="help-block">Help block with error</span>
+                                @if($errors->has('patient_type'))
+                                    <span class="help-block">{{ $errors->first('patient_type') }}</span>
+                                @endif
                             </div>
                         </div>
                     </div> 
@@ -140,28 +154,34 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="receivingDate">Receiving Date & Time</label>
-                                <input type="text" name="receiving_date" class="form-control form-control-sm is-invalid" id="receivingDate" placeholder="Receiving Date & Time" value="">
-                                <span class="error invalid-feedback">Please enter a email address</span>
+                                <input type="text" name="receiving_date" class="form-control form-control-sm @error('receiving_date') is-invalid @enderror" id="receivingDate" placeholder="Receiving Date & Time" value="{{ old('receiving_date') }}">
+                                @if($errors->has('receiving_date'))
+                                    <span class="error invalid-feedback">{{ $errors->first('receiving_date') }}</span>
+                                @endif
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="reportingDate">Reporting Date & Time</label>
-                                <input type="text" name="reporting_date" class="form-control form-control-sm is-invalid" id="reportingDate" placeholder="Reporting Date & Time" value="">
-                                <span class="error invalid-feedback">Please enter a email address</span>
+                                <input type="text" name="reporting_date" class="form-control form-control-sm @error('reporting_date') is-invalid @enderror" id="reportingDate" placeholder="Reporting Date & Time" value="{{ old('reporting_date') }}">
+                                @if($errors->has('reporting_date'))
+                                    <span class="error invalid-feedback">{{ $errors->first('reporting_date') }}</span>
+                                @endif
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="testReporStatus">Test Report Status</label>
-                                <select name="test_report_status" class="form-control form-control-sm">
-                                    <option>--SELECT--</option>
+                                <select name="test_report_status" class="form-control form-control-sm @error('test_report_status') is-invalid @enderror">
+                                    <option value="">--SELECT--</option>
                                     <option>option 2</option>
                                     <option>option 3</option>
                                     <option>option 4</option>
                                     <option>option 5</option>
                                 </select>
-                                <span class="help-block">Help block with error</span>
+                                @if($errors->has('test_report_status'))
+                                    <span class="help-block">{{ $errors->first('test_report_status') }}</span>
+                                @endif
                             </div>
                         </div>
                     </div> 
@@ -169,13 +189,18 @@
                     <!--  Block Five -->
                     <div class="form-group">
                 		<label for="refConsultant">Ref. Consultant</label>
-                		<input type="text" name="ref_consultant" class="form-control form-control-sm is-invalid" placeholder="Ref. Consultant">
-                		<span class="error invalid-feedback">Please enter a email address</span>
+                		<input type="text" name="ref_consultant" class="form-control form-control-sm @error('ref_consultant') is-invalid @enderror" placeholder="Ref. Consultant" value="{{ old('ref_consultant') }}">
+                		@if($errors->has('ref_consultant'))
+                            <span class="error invalid-feedback">{{ $errors->first('ref_consultant') }}</span>
+                        @endif
                 	</div> 
                 
                 	<div class="form-group">
                 		<label for="laboratoryReport">Laboratory Report:</label>
-                		<textarea name="laboratory_report" class="form-control form-control-sm" rows="5" placeholder="Laboratory report..."></textarea>
+                		<textarea name="laboratory_report" class="form-control form-control-sm @error('laboratory_report') is-invalid @enderror" rows="5" placeholder="Laboratory report...">{{ old('laboratory_report') }}</textarea>
+                        @if($errors->has('laboratory_report'))
+                            <span class="error invalid-feedback">{{ $errors->first('laboratory_report') }}</span>
+                        @endif
                 	</div>
                 </div>
 
