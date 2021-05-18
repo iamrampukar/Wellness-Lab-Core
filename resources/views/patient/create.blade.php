@@ -11,28 +11,38 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form>
+              @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+              @endif
+              <form method="post" action="{{ route('patient.store') }}">
+                @csrf
                 <div class="card-body">
                     <!--  Block One -->
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="categoryNameNepali">First Name</label>
-                                <input type="text" name="categoryNameNepali" class="form-control form-control-sm is-invalid" placeholder="First Name ">
+                                <label for="firstName">First Name</label>
+                                <input type="text" name="first_name" class="form-control form-control-sm is-invalid" placeholder="First Name ">
                                 <span class="error invalid-feedback">Please enter a email address</span>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="categoryNameNepali">Middle Name</label>
-                                <input type="text" name="categoryNameNepali" class="form-control form-control-sm is-invalid" placeholder="Middle Name ">
+                                <label for="lastName">Middle Name</label>
+                                <input type="text" name="middle_name" class="form-control form-control-sm is-invalid" placeholder="Middle Name ">
                                 <span class="error invalid-feedback">Please enter a email address</span>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="categoryNameNepali">Last Name</label>
-                                <input type="text" name="categoryNameNepali" class="form-control form-control-sm is-invalid" placeholder="Last Name ">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" name="last_name" class="form-control form-control-sm is-invalid" placeholder="Last Name ">
                                 <span class="error invalid-feedback">Please enter a email address</span>
                             </div>
                         </div>
@@ -42,30 +52,28 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="categoryNameNepali">Gender</label>
-                                <!-- <input type="text" name="categoryNameNepali" class="form-control form-control-sm is-invalid" placeholder="Gender...">
+                                <label for="gender">Gender</label>
+                                <!-- <input type="text" name="gender" class="form-control form-control-sm is-invalid" placeholder="Gender...">
                                 <span class="error invalid-feedback">Please enter a email address</span> -->
-                                <select class="form-control form-control-sm">
-                                    <option>option 1</option>
-                                    <option>option 2</option>
-                                    <option>option 3</option>
-                                    <option>option 4</option>
-                                    <option>option 5</option>
+                                <select name="gender" class="form-control form-control-sm">
+                                    <option>--SELECT--</option>
+                                    <option value="0">Female</option>
+                                    <option value="1">Male</option>
                                 </select>
                                 <span class="help-block">Help block with error</span>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="categoryNameNepali">Date Of Birth</label>
-                                <input type="text" class="form-control form-control-sm is-invalid" id="dateOfBirth" placeholder="Date Of Birth" value="">
+                                <label for="dateOfBirth">Date Of Birth</label>
+                                <input type="text" class="form-control form-control-sm is-invalid" name="dob" id="dateOfBirth" placeholder="Date Of Birth" value="">
                                 <span class="error invalid-feedback">Please enter a email address</span>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="categoryNameNepali">Age</label>
-                                <input type="text" name="categoryNameNepali" class="form-control form-control-sm is-invalid" placeholder="Age... ">
+                                <label for="age">Age</label>
+                                <input type="number" name="age" class="form-control form-control-sm is-invalid" placeholder="Age... ">
                                 <span class="error invalid-feedback">Please enter a email address</span>
                             </div>
                         </div>
@@ -75,22 +83,22 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="categoryNameNepali">Mobile No</label>
-                                <input type="text" name="categoryNameNepali" class="form-control form-control-sm is-invalid" placeholder="9849...">
+                                <label for="mobile1">Mobile No</label>
+                                <input type="text" name="mobile1" class="form-control form-control-sm is-invalid" placeholder="9849...">
                                 <span class="error invalid-feedback">Please enter a email address</span>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="categoryNameNepali">Mobile No</label>
-                                <input type="text" name="categoryNameNepali" class="form-control form-control-sm is-invalid" placeholder="9849...">
+                                <label for="mobile2">Mobile No</label>
+                                <input type="text" name="mobile2" class="form-control form-control-sm is-invalid" placeholder="9849...">
                                 <span class="error invalid-feedback">Please enter a email address</span>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="categoryNameNepali">Tel No</label>
-                                <input type="text" name="categoryNameNepali" class="form-control form-control-sm is-invalid" placeholder="01-555...">
+                                <label for="telephone">Telephone No</label>
+                                <input type="text" name="telephone" class="form-control form-control-sm is-invalid" placeholder="01-555...">
                                 <span class="error invalid-feedback">Please enter a email address</span>
                             </div>
                         </div>
@@ -100,23 +108,23 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="categoryNameNepali">Lab Id</label>
-                                <input type="text" name="categoryNameNepali" class="form-control form-control-sm is-invalid" placeholder="Lab Id">
+                                <label for="labId">Lab Id</label>
+                                <input type="text" name="lab_id" class="form-control form-control-sm is-invalid" placeholder="Lab Id">
                                 <span class="error invalid-feedback">Please enter a email address</span>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="categoryNameNepali">Sample No</label>
-                                <input type="text" name="categoryNameNepali" class="form-control form-control-sm is-invalid" placeholder="Sample No">
+                                <label for="sampleNo">Sample No</label>
+                                <input type="text" name="sample_no" class="form-control form-control-sm is-invalid" placeholder="Sample No">
                                 <span class="error invalid-feedback">Please enter a email address</span>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="categoryNameNepali">Patient Type</label>
-                                <select class="form-control form-control-sm">
-                                    <option>option 1</option>
+                                <label for="patientType">Patient Type</label>
+                                <select name="patient_type" class="form-control form-control-sm">
+                                    <option>--SELECT--</option>
                                     <option>option 2</option>
                                     <option>option 3</option>
                                     <option>option 4</option>
@@ -131,38 +139,43 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="categoryNameNepali">Receiving Date & Time</label>
-                                <input type="text" class="form-control form-control-sm is-invalid" id="receivingDate" placeholder="Receiving Date & Time" value="">
+                                <label for="receivingDate">Receiving Date & Time</label>
+                                <input type="text" name="receiving_date" class="form-control form-control-sm is-invalid" id="receivingDate" placeholder="Receiving Date & Time" value="">
                                 <span class="error invalid-feedback">Please enter a email address</span>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="categoryNameNepali">Reporting Date & Time</label>
-                                <input type="text" class="form-control form-control-sm is-invalid" id="reportingDate" placeholder="Reporting Date & Time" value="">
+                                <label for="reportingDate">Reporting Date & Time</label>
+                                <input type="text" name="reporting_date" class="form-control form-control-sm is-invalid" id="reportingDate" placeholder="Reporting Date & Time" value="">
                                 <span class="error invalid-feedback">Please enter a email address</span>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="categoryNameNepali">Test Report Status</label>
-                                <input type="text" name="categoryNameNepali" class="form-control form-control-sm is-invalid" placeholder="Test Report Status">
-                                <span class="error invalid-feedback">Please enter a email address</span>
+                                <label for="testReporStatus">Test Report Status</label>
+                                <select name="test_report_status" class="form-control form-control-sm">
+                                    <option>--SELECT--</option>
+                                    <option>option 2</option>
+                                    <option>option 3</option>
+                                    <option>option 4</option>
+                                    <option>option 5</option>
+                                </select>
+                                <span class="help-block">Help block with error</span>
                             </div>
                         </div>
                     </div> 
 
                     <!--  Block Five -->
                     <div class="form-group">
-                		<label for="categoryNameNepali">Ref. Consultant</label>
-                		<input type="text" name="categoryNameNepali" class="form-control form-control-sm is-invalid" placeholder="Ref. Consultant">
+                		<label for="refConsultant">Ref. Consultant</label>
+                		<input type="text" name="ref_consultant" class="form-control form-control-sm is-invalid" placeholder="Ref. Consultant">
                 		<span class="error invalid-feedback">Please enter a email address</span>
                 	</div> 
-
                 
                 	<div class="form-group">
-                		<label>Laboratory Report:</label>
-                		<textarea class="form-control form-control-sm" rows="5" placeholder="Laboratory report..."></textarea>
+                		<label for="laboratoryReport">Laboratory Report:</label>
+                		<textarea name="laboratory_report" class="form-control form-control-sm" rows="5" placeholder="Laboratory report..."></textarea>
                 	</div>
                 </div>
 

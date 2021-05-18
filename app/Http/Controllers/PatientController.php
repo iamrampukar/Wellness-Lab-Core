@@ -14,7 +14,8 @@ class PatientController extends Controller
      */
     public function index()
     {
-        //
+        $modelPatient = Patient::all();
+        return view('patient.index',['modelPatient'=>$modelPatient]);
     }
 
     /**
@@ -35,7 +36,24 @@ class PatientController extends Controller
      */
     public function store(Request $request)
     {
-        
+
+        $request->validate([
+            'first_name'=>'required',
+            'last_name'=>'required',
+            'gender'=>'required',
+            'age'=>'required',
+            "mobile1"=>'required',
+            'lab_id'=>'required',
+            'sample_no'=>'required',
+            'patient_type'=>'required',
+            'receiving_date'=>'required',
+            'reporting_date'=>'required',
+            'test_report_status'=>'required',
+            'ref_consultant'=>'required',
+            'laboratory_report'=>'required',
+        ]);
+        $model = Patient::create($request->all());
+        return redirect()->route('patient.index');
     }
 
     /**
@@ -46,7 +64,7 @@ class PatientController extends Controller
      */
     public function show(Patient $patient)
     {
-        //
+        return view('patient.show',['modelPatient'=>$patient]);
     }
 
     /**
