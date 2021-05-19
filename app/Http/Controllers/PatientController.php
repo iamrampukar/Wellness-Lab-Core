@@ -4,9 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Patient;
 use Illuminate\Http\Request;
+use App\Http\Requests\PatientRequest;
+use App\Repositories\PatientInterface;
 
 class PatientController extends Controller
 {
+    private $selfPatient;
+
+    public function __construct(PatientInterface $modelPatientInit) {
+        $this->selfPatient = $modelPatientInit;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +22,7 @@ class PatientController extends Controller
      */
     public function index()
     {
-        $modelPatient = Patient::all();
+        $modelPatient = $this->selfPatient->getAll();
         return view('patient.index',['modelPatient'=>$modelPatient]);
     }
 
@@ -34,25 +42,10 @@ class PatientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PatientRequest $request)
     {
 
-        $request->validate([
-            'first_name'=>'required',
-            'last_name'=>'required',
-            'gender'=>'required',
-            'age'=>'required',
-            "mobile1"=>'required',
-            'lab_id'=>'required',
-            'sample_no'=>'required',
-            'patient_type'=>'required',
-            'receiving_date'=>'required',
-            'reporting_date'=>'required',
-            'test_report_status'=>'required',
-            'ref_consultant'=>'required',
-            'laboratory_report'=>'required',
-        ]);
-        $model = Patient::create($request->all());
+        $modelPatient = $this->selfPatient->create($request->all());
         return redirect()->route('patient.index');
     }
 
@@ -62,9 +55,10 @@ class PatientController extends Controller
      * @param  \App\Models\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function show(Patient $patient)
+    public function show($id)
     {
-        return view('patient.show',['modelPatient'=>$patient]);
+        $modelPatient = $this->selfPatient->getById($id);
+        return view('patient.show',['modelPatient'=>$modelPatient]);
     }
 
     /**
@@ -73,9 +67,10 @@ class PatientController extends Controller
      * @param  \App\Models\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function edit(Patient $patient)
+    public function edit($id)
     {
-        return view('patient.edit',['modelPatient'=>$patient]);
+        $modelPatient = $this->selfPatient->getById($id);
+        return view('patient.edit',['modelPatient'=>$modelPatient]);
     }
 
     /**
@@ -85,24 +80,9 @@ class PatientController extends Controller
      * @param  \App\Models\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Patient $patient)
+    public function update(PatientRequest $request, $id)
     {
-        $request->validate([
-            'first_name'=>'required',
-            'last_name'=>'required',
-            'gender'=>'required',
-            'age'=>'required',
-            "mobile1"=>'required',
-            'lab_id'=>'required',
-            'sample_no'=>'required',
-            'patient_type'=>'required',
-            'receiving_date'=>'required',
-            'reporting_date'=>'required',
-            'test_report_status'=>'required',
-            'ref_consultant'=>'required',
-            'laboratory_report'=>'required',
-        ]);
-        $patient->update($request->all());
+        $modelPatient = $this->selfPatient->update($id, $request->all());
         return redirect()->route('patient.index');
     }
 
@@ -112,9 +92,9 @@ class PatientController extends Controller
      * @param  \App\Models\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Patient $patient)
+    public function destroy($id)
     {
-        $patient->delete();
+        $modelPatient = $this->selfPatient->delete($id);
         return redirect()->route('patient.index');
     }
 }
