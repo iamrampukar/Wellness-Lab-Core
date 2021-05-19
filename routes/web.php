@@ -27,5 +27,6 @@ Route::get('/', function () {
 Route::resource('/dashboard',DashboardController::class);
 Route::resource('/patient', PatientController::class);
 Route::resource('/patient-report', PatientReportController::class);
+Route::get('patient-report/create-report/{id}',[PatientReportController::class, 'report'])->name('patient-report.report');
 
 require __DIR__.'/auth.php';

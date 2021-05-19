@@ -21,10 +21,10 @@
                             <div class="form-group">
                                 <label for="labId">Lab Id</label>
                                 <input type="text" name="lab_id" class="form-control form-control-sm @error('lab_id') is-invalid @enderror" placeholder="Lab Id" value="{{ old('lab_id',$modelPatient->lab_id) }}">
+                                <input type="hidden" name="patient_id" value="{{ old('patient_id',$modelPatient->patient_id) }}">
                                 @if($errors->has('lab_id'))
                                     <span class="error invalid-feedback">{{ $errors->first('lab_id') }}</span>
                                 @endif
-                                <input type="text" name="patient_id" class="form-control form-control-sm" placeholder="Patient Id" value="{{ old('patient_id',$modelPatient->patient_id) }}">
                             </div>
                         </div>
                         <div class="col">

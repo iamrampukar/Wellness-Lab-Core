@@ -41,6 +41,8 @@
 									<td>
 										<form method="post" action="{{ route('patient.destroy',$value->id) }}">
 											<a href="{{ route('patient.show',$value->id) }}" class="btn btn-info btn-xs"><i class="far fa-eye"></i></a>
+											<a href="{{ route('patient-report.report',$value->id) }}" class="btn btn-info btn-xs"><i class="fas fa-plus"></i></a>
+											<a href="{{ route('patient.show',$value->id) }}" class="btn btn-info btn-xs"><i class="fas fa-list"></i></a>
 											<a href="{{ route('patient.edit',$value->id) }}" class="btn btn-primary btn-xs"><i class="far fa-edit"></i></a>
 											@csrf
 											@method('DELETE')

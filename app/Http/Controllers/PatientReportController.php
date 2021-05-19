@@ -5,13 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\PatientReport;
 use App\Http\Requests\PatientReportRequest;
 use App\Repositories\PatientReportInterface;
+use App\Repositories\PatientInterface;
 
 class PatientReportController extends Controller
 {
     private $selfPatientReport;
+    private $selfPatient;
 
-    public function __construct(PatientReportInterface $modelPatientReportReport) {
+    public function __construct(PatientReportInterface $modelPatientReportReport, PatientInterface $modelPatientInterface) {
         $this->selfPatientReport = $modelPatientReportReport;
+        $this->selfPatient = $modelPatientInterface;
     }
 
     /**
@@ -33,6 +36,12 @@ class PatientReportController extends Controller
     public function create()
     {
         return view('patientReport.create');
+    }
+
+    public function report($id){
+        $modelPatient = $this->selfPatient->getById($id);
+
+        return view('patientReport.create',['modelPatient'=>$modelPatient]);
     }
 
     /**

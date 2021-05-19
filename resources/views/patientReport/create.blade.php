@@ -15,13 +15,52 @@
                 @csrf
                 @method('POST')
                 <div class="card-body">
+                    <div class="row border border-primary">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="fullName">Id No</label>
+                                <p>{{ $modelPatient->id}}</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="fullName">Full Name</label>
+                                <p>{{ $modelPatient->first_name.' '.$modelPatient->middle_name.' '.$modelPatient->last_name}}</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="moboleNo">Mobile No</label>
+                                <p>{{ $modelPatient->mobile1.', '.$modelPatient->mobile2.' '.$modelPatient->telephone_no}}</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="gender">Gender</label>
+                                <p>{{ $modelPatient->gender==0 ? 'Female' :'Male' }}</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="dob">Date Of Birth</label>
+                                <p>{{ $modelPatient->dob }}</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="age">Age</label>
+                                <p>{{ $modelPatient->age}}</p>
+                            </div>
+                        </div>
+                    </div>
+
                     <!--  Block Four -->
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
                                 <label for="labId">Lab Id</label>
                                 <input type="text" name="lab_id" class="form-control form-control-sm @error('lab_id') is-invalid @enderror" placeholder="Lab Id" value="{{ old('lab_id') }}">
-                                <input type="text" name="patient_id" class="form-control form-control-sm" placeholder="Patient Id" value="{{ old('patient_id') }}">
+                                <input type="hidden" name="patient_id" value="{{ old('patient_id', request()->route('id')) }}">
                                 @if($errors->has('lab_id'))
                                     <span class="error invalid-feedback">{{ $errors->first('lab_id') }}</span>
                                 @endif
