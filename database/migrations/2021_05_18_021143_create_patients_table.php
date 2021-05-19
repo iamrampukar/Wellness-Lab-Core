@@ -21,8 +21,8 @@ class CreatePatientsTable extends Migration
             $table->tinyInteger('gender')->default(0);
             $table->date('dob');
             $table->integer('age');
-            $table->string('mobile1',20);
-            $table->string('mobile2',20);
+            $table->string('mobile1',20)->nullable();
+            $table->string('mobile2',20)->nullable();
             $table->string('telephone',20);
             $table->string('lab_id',20);
             $table->string('sample_no',20);

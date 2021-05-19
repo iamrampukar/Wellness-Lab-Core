@@ -51,9 +51,13 @@
 									<td>{{ $value->receiving_date }}</td>
 									<td>{{ $value->reporting_date }}</td> -->
 									<td>
-										<a href="{{ route('patient.show',$value->id) }}" class="btn btn-info btn-xs"><i class="far fa-eye"></i></a>
-										<a href="" class="btn btn-primary btn-xs"><i class="far fa-edit"></i></a>
-										<a href="" class="btn btn-danger btn-xs"><i class="far fa-trash-alt"></i></a>
+										<form method="post" action="{{ route('patient.destroy',$value->id) }}">
+											<a href="{{ route('patient.show',$value->id) }}" class="btn btn-info btn-xs"><i class="far fa-eye"></i></a>
+											<a href="{{ route('patient.edit',$value->id) }}" class="btn btn-primary btn-xs"><i class="far fa-edit"></i></a>
+											@csrf
+											@method('DELETE')
+											<button type="submit" class="btn btn-danger btn-xs"><i class="far fa-trash-alt"></i></button>
+										</form>
 									</td>
 								</tr>
                             @endforeach

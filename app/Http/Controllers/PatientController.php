@@ -75,7 +75,7 @@ class PatientController extends Controller
      */
     public function edit(Patient $patient)
     {
-        //
+        return view('patient.edit',['modelPatient'=>$patient]);
     }
 
     /**
@@ -87,7 +87,23 @@ class PatientController extends Controller
      */
     public function update(Request $request, Patient $patient)
     {
-        //
+        $request->validate([
+            'first_name'=>'required',
+            'last_name'=>'required',
+            'gender'=>'required',
+            'age'=>'required',
+            "mobile1"=>'required',
+            'lab_id'=>'required',
+            'sample_no'=>'required',
+            'patient_type'=>'required',
+            'receiving_date'=>'required',
+            'reporting_date'=>'required',
+            'test_report_status'=>'required',
+            'ref_consultant'=>'required',
+            'laboratory_report'=>'required',
+        ]);
+        $patient->update($request->all());
+        return redirect()->route('patient.index');
     }
 
     /**
@@ -98,6 +114,7 @@ class PatientController extends Controller
      */
     public function destroy(Patient $patient)
     {
-        //
+        $patient->delete();
+        return redirect()->route('patient.index');
     }
 }
