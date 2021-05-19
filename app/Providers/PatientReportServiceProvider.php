@@ -3,10 +3,10 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Repositories\PatientInterface;
-use App\Repositories\PatientRepository;
+use App\Repositories\PatientReportInterface;
+use App\Repositories\PatientReportRepository;
 
-class PatientServiceProvider extends ServiceProvider
+class PatientReportServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
@@ -15,7 +15,7 @@ class PatientServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(PatientInterface::class, PatientRepository::class);
+        $this->app->singleton(PatientReportInterface::class, PatientReportRepository::class);
     }
 
     /**

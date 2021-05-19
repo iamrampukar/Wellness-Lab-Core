@@ -83,22 +83,61 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="email">Email</label>
-                                <p>{{ $modelPatient->email}}</p>
+                                <label for="labId">Lab Id</label>
+                                <p>{{ $modelPatient->lab_id}}</p>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="address">Address</label>
-                                <p>{{ $modelPatient->address }}</p>
+                                <label for="sampleNo">Sample No</label>
+                                <p>{{ $modelPatient->sample_no}}</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="patientType">Patient Type</label>
+                                <p>{{ $modelPatient->patient_type}}</p>
                             </div>
                         </div>
                     </div> 
+
+                     <!--  Block Five -->
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="receivingDate">Receiving Date & Time</label>
+                                <p>{{ $modelPatient->receiving_date}}</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="reportingDate">Reporting Date & Time</label>
+                                <p>{{ $modelPatient->reporting_date}}</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="testReporStatus">Test Report Status</label>
+                                <p>{{ $modelPatient->test_report_status}}</p>
+                            </div>
+                        </div>
+                    </div> 
+
+                    <!--  Block Five -->
+                    <div class="form-group">
+                		<label for="refConsultant">Ref. Consultant</label>
+                		<p>{{ $modelPatient->ref_consultant}}</p>
+                	</div> 
+                
+                	<div class="form-group">
+                		<label for="laboratoryReport">Laboratory Report:</label>
+                		<p>{{ $modelPatient->laboratory_report}}</p>
+                	</div>
                 </div>
 
                 <!-- /.card-body -->
                 <div class="card-footer">
-                  <a href="{{ route('patient.index') }}" class="btn btn-primary btn-sm">Back</a>
+                  <a href="{{ route('patient-report.index') }}" class="btn btn-primary btn-sm">Back</a>
                 </div>
             </div>
             <!-- /.card -->

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\PatientReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,5 +26,6 @@ Route::get('/', function () {
 
 Route::resource('/dashboard',DashboardController::class);
 Route::resource('/patient', PatientController::class);
+Route::resource('/patient-report', PatientReportController::class);
 
 require __DIR__.'/auth.php';

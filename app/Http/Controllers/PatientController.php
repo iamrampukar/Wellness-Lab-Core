@@ -11,8 +11,8 @@ class PatientController extends Controller
 {
     private $selfPatient;
 
-    public function __construct(PatientInterface $modelPatientInit) {
-        $this->selfPatient = $modelPatientInit;
+    public function __construct(PatientInterface $modelPatient) {
+        $this->selfPatient = $modelPatient;
     }
 
     /**

@@ -24,16 +24,8 @@ class CreatePatientsTable extends Migration
             $table->string('mobile1',20)->nullable();
             $table->string('mobile2',20)->nullable();
             $table->string('telephone',20);
-            $table->string('lab_id',20);
-            $table->string('sample_no',20);
-            $table->string('patient_type',25);
-            $table->dateTime('receiving_date');
-            $table->dateTime('reporting_date');
-            $table->string('test_report_status',25);
-            $table->string('ref_consultant',25);
-            $table->longText('laboratory_report');
-            $table->tinyInteger('publish')->default(1);
-            $table->tinyInteger('delete_flag')->default(1);
+            $table->string('email')->unique();
+            $table->mediumText('address')->nullable();
             $table->timestamps();
         });
     }

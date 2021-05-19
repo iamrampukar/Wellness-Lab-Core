@@ -4,7 +4,7 @@
 	<div class="container-fluid">
 		<div class="row mb-2">
 			<div class="col-sm-6">
-				<h1>Patient List <small></small></h1>
+				<h1>Patient Report List</h1>
 			</div>
 		</div>
 	</div><!-- /.container-fluid -->
@@ -26,7 +26,10 @@
 									<th>Full Name</th>
 									<th>Gender</th>
 									<th>Mobile</th>
-									<th>Date Of Birth</th>
+									<th>Date Of Birht</th>
+									<!-- <th>Sample No</th>
+									<th>Receiving Date</th>
+									<th>Reporting Date</th> -->
 									<th style="width: 40px"></th>
 								</tr>
 							</thead>
@@ -37,11 +40,14 @@
 									<td>{{ $value->first_name.' '.$value->last_name }}</td>
 									<td>{{ $value->gender==0 ? 'Female' : 'Male' }}</td>
 									<td>{{ $value->mobile1 }}</td>
-									<td>{{ $value->dob }}</td>
+									<td>{{ $value->lab_id }}</td>
+									<!-- <td>{{ $value->sample_no }}</td>
+									<td>{{ $value->receiving_date }}</td>
+									<td>{{ $value->reporting_date }}</td> -->
 									<td>
-										<form method="post" action="{{ route('patient.destroy',$value->id) }}">
-											<a href="{{ route('patient.show',$value->id) }}" class="btn btn-info btn-xs"><i class="far fa-eye"></i></a>
-											<a href="{{ route('patient.edit',$value->id) }}" class="btn btn-primary btn-xs"><i class="far fa-edit"></i></a>
+										<form method="post" action="{{ route('patient-report.destroy',$value->id) }}">
+											<a href="{{ route('patient-report.show',$value->id) }}" class="btn btn-info btn-xs"><i class="far fa-eye"></i></a>
+											<a href="{{ route('patient-report.edit',$value->id) }}" class="btn btn-primary btn-xs"><i class="far fa-edit"></i></a>
 											@csrf
 											@method('DELETE')
 											<button type="submit" class="btn btn-danger btn-xs"><i class="far fa-trash-alt"></i></button>

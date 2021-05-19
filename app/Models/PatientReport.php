@@ -5,10 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Patient extends Model
+class PatientReport extends Model
 {
     use HasFactory;
-    
     protected $guarded = [];
-    public $timestamps = true;
+    // public $timestamps = true;
 }
