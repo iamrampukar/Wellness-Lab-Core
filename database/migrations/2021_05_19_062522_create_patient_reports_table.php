@@ -26,6 +26,7 @@ class CreatePatientReportsTable extends Migration
             $table->string('ref_consultant',25);
             $table->longText('laboratory_report');
             $table->tinyInteger('publish')->default(1);
+            $table->double('lab_fee', 15, 2);
             $table->tinyInteger('delete_flag')->default(1);
             $table->timestamps();
             $table->foreign('patient_id')->references('id')->on('patients');

@@ -38,9 +38,8 @@ class PatientReportController extends Controller
         return view('patientReport.create');
     }
 
-    public function report($id){
+    public function createReport($id){
         $modelPatient = $this->selfPatient->getById($id);
-
         return view('patientReport.create',['modelPatient'=>$modelPatient]);
     }
 
@@ -78,7 +77,8 @@ class PatientReportController extends Controller
     public function edit($id)
     {
         $modelPatientReport = $this->selfPatientReport->getById($id);
-        return view('patientReport.edit',['modelPatient'=>$modelPatientReport]);
+        $modelPatient = $this->selfPatient->getById($modelPatientReport->patient_id);
+        return view('patientReport.edit',['modelPatientReport'=>$modelPatientReport,'modelPatient'=>$modelPatient]);
     }
 
     /**
