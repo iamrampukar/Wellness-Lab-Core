@@ -44,3 +44,7 @@
 </div>
             <!-- /.content -->
 @endsection
+
+@push('scripts')
+    <script src="{{ asset('/js/pages/dashboard3.js') }}"></script>
+@endpush

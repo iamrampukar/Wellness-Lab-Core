@@ -148,5 +148,6 @@
 @endsection
 
 @push('scripts')
+    <script src="{{ asset('/plugins/daterangepicker/daterangepicker.js') }}"></script>
     <script src="{{ asset('/js/datepickers.js') }}"></script>
 @endpush

@@ -17,11 +17,7 @@
 
 <!-- OPTIONAL SCRIPTS -->
 <script src="{{ asset('/plugins/chart.js/Chart.min.js') }}"></script>
-<script src="{{ asset('/js/pages/dashboard3.js') }}"></script>
 <script src="{{ asset('/plugins/moment/moment.min.js') }}"></script>
-<script src="{{ asset('/plugins/daterangepicker/daterangepicker.js') }}"></script>
-
 @stack('scripts')
-
 </body>
 </html>
