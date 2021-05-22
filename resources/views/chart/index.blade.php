@@ -47,26 +47,24 @@
 
 @push('scripts')
 <script>
-    $(function () {
-        'use strict'
+    function chartConfigData(chartData) {
         var ticksStyle = {
             fontColor: '#495057',
             fontStyle: 'bold'
         }
         var mode = 'index'
         var intersect = true
-
         // Report Dashboard
-        var $reportChart = $('#report-chart')
-        var reportChart = new Chart($reportChart, {
+       
+        var chartData = {
             type: 'bar',
             data: {
-            labels: ['JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
+            labels: chartData.years,//['JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
             datasets: [
                 {
                 backgroundColor: '#007bff',
                 borderColor: '#007bff',
-                data: [1000, 2000, 3000, 2500, 2700, 2500, 3000]
+                data: chartData.datas//[1000, 2000, 3000, 2500, 2700, 2500, 3000]
                 }
             ]
             },
@@ -114,7 +112,28 @@
                 }]
             }
             }
+        };
+        return chartData;
+    } // funnction end
+
+    $(function () {
+        'use strict'
+        $.ajax({
+            url: 'http://127.0.0.1:8000/chart/report-data',
+            type: 'GET',
+            dataType: 'json',
+            // data: {param1: 'value1'},
         })
+        .done(function(res) {
+            var resData = res.data;
+            var $getChartData = chartConfigData(resData);
+            var $reportChart = $('#report-chart');
+            var reportChart = new Chart($reportChart,$getChartData);
+        })
+        .fail(function() {
+            console.log("error");
+        });
+        
     })
 </script>
 @endpush

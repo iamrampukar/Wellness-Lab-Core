@@ -27,8 +27,9 @@ Route::get('/', function () {
 
 Route::resource('/dashboard',DashboardController::class);
 Route::resource('/patient', PatientController::class);
-Route::resource('/patient-report', PatientReportController::class);
 Route::get('patient-report/create-report/{id}',[PatientReportController::class, 'createReport'])->name('patient-report.create-report');
+Route::resource('/patient-report', PatientReportController::class);
+Route::get('chart/report-data',[ChartController::class, 'reportData'])->name('chart.report-data');
 Route::resource('/chart',ChartController::class);
 
 require __DIR__.'/auth.php';

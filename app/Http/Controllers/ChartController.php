@@ -82,4 +82,12 @@ class ChartController extends Controller
     {
         //
     }
+
+    public function reportData() {
+        $data = array(
+            'years'=> ['JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
+            'datas'=>[1000, 2000, 3000, 2500, 2700, 2500, 3000], 
+        );
+        return response()->json(['data'=>$data]);
+    }
 }
