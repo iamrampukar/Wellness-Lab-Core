@@ -148,5 +148,5 @@
 @endsection
 
 @push('scripts')
-<script src="{{ asset('/js/datepickers.js') }}"></script>
+    <script src="{{ asset('/js/datepickers.js') }}"></script>
 @endpush
