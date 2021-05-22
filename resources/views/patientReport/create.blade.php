@@ -145,6 +145,47 @@
                             <span class="error invalid-feedback">{{ $errors->first('laboratory_report') }}</span>
                         @endif
                 	</div>
+
+                     <!--  Block Five -->
+                     <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="amount">Amount</label>
+                                <input type="text" name="amount" class="form-control form-control-sm @error('amount') is-invalid @enderror" placeholder="100.00" value="{{ old('amount') }}">
+                                @if($errors->has('amount'))
+                                    <span class="error invalid-feedback">{{ $errors->first('amount') }}</span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="amountStatus">Amount Type</label>
+                                <select name="amount_status" class="form-control form-control-sm @error('amount_status') is-invalid @enderror">
+                                    <option value="">--SELECT--</option>
+                                    <option>Paid</option>
+                                    <option>Unpaid</option>
+                                </select>
+                                @if($errors->has('amount_status'))
+                                    <span class="help-block">{{ $errors->first('amount_status') }}</span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="paymentType">Payment Status</label>
+                                <select name="payment_type" class="form-control form-control-sm @error('payment_type') is-invalid @enderror">
+                                    <option value="">--SELECT--</option>
+                                    <option>Cash</option>
+                                    <option>Visa</option>
+                                    <option>Cradit Card</option>
+                                    <option>IPS</option>
+                                </select>
+                                @if($errors->has('payment_type'))
+                                    <span class="help-block">{{ $errors->first('payment_type') }}</span>
+                                @endif
+                            </div>
+                        </div>
+                    </div> 
                 </div>
 
                 <!-- /.card-body -->

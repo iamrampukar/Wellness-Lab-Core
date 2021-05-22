@@ -25,7 +25,9 @@ class PatientReportController extends Controller
     public function index()
     {
         $modelPatientReport = $this->selfPatientReport->getAll();
-        return view('patientReport.index',['modelPatient'=>$modelPatientReport]);
+        return view('patientReport.index',[
+            'modelPatient'=>$modelPatientReport
+        ]);
     }
 
     /**
@@ -40,7 +42,9 @@ class PatientReportController extends Controller
 
     public function createReport($id){
         $modelPatient = $this->selfPatient->getById($id);
-        return view('patientReport.create',['modelPatient'=>$modelPatient]);
+        return view('patientReport.create',[
+            'modelPatient'=>$modelPatient
+        ]);
     }
 
     /**
@@ -65,7 +69,11 @@ class PatientReportController extends Controller
     public function show($id)
     {
         $modelPatientReport = $this->selfPatientReport->getById($id);
-        return view('patientReport.show',['modelPatient'=>$modelPatientReport]);
+        $modelPatient = $this->selfPatient->getById($modelPatientReport->patient_id);
+        return view('patientReport.show',[
+            'modelPatientReport'=>$modelPatientReport,
+            'modelPatient'=>$modelPatient
+        ]);
     }
 
     /**
@@ -78,7 +86,10 @@ class PatientReportController extends Controller
     {
         $modelPatientReport = $this->selfPatientReport->getById($id);
         $modelPatient = $this->selfPatient->getById($modelPatientReport->patient_id);
-        return view('patientReport.edit',['modelPatientReport'=>$modelPatientReport,'modelPatient'=>$modelPatient]);
+        return view('patientReport.edit',[
+            'modelPatientReport'=>$modelPatientReport,
+            'modelPatient'=>$modelPatient
+        ]);
     }
 
     /**

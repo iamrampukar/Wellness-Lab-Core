@@ -38,7 +38,7 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="lastName">Last Name</label>
+                                <label for="gender">Gender</label>
                                 <p>{{ $modelPatient->gender==0 ? 'Female': 'Male' }}</p>
                             </div>
                         </div>
@@ -84,19 +84,19 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="labId">Lab Id</label>
-                                <p>{{ $modelPatient->lab_id}}</p>
+                                <p>{{ $modelPatientReport->lab_id}}</p>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="sampleNo">Sample No</label>
-                                <p>{{ $modelPatient->sample_no}}</p>
+                                <p>{{ $modelPatientReport->sample_no}}</p>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="patientType">Patient Type</label>
-                                <p>{{ $modelPatient->patient_type}}</p>
+                                <p>{{ $modelPatientReport->patient_type}}</p>
                             </div>
                         </div>
                     </div> 
@@ -106,19 +106,19 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="receivingDate">Receiving Date & Time</label>
-                                <p>{{ $modelPatient->receiving_date}}</p>
+                                <p>{{ $modelPatientReport->receiving_date}}</p>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="reportingDate">Reporting Date & Time</label>
-                                <p>{{ $modelPatient->reporting_date}}</p>
+                                <p>{{ $modelPatientReport->reporting_date}}</p>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="testReporStatus">Test Report Status</label>
-                                <p>{{ $modelPatient->test_report_status}}</p>
+                                <p>{{ $modelPatientReport->test_report_status}}</p>
                             </div>
                         </div>
                     </div> 
@@ -126,13 +126,41 @@
                     <!--  Block Five -->
                     <div class="form-group">
                 		<label for="refConsultant">Ref. Consultant</label>
-                		<p>{{ $modelPatient->ref_consultant}}</p>
+                		<p>{{ $modelPatientReport->ref_consultant}}</p>
                 	</div> 
                 
                 	<div class="form-group">
                 		<label for="laboratoryReport">Laboratory Report:</label>
-                		<p>{{ $modelPatient->laboratory_report}}</p>
+                		<p>{{ $modelPatientReport->laboratory_report}}</p>
                 	</div>
+
+                     <!--  Block Three -->
+                     <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="amount">Amount</label>
+                                <p>{{ $modelPatientReport->amount}}</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="amount_status">Amount Status</label>
+                                <p>{{ $modelPatientReport->amount_status}}</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="paymentType">Payment Type</label>
+                                <p>{{ $modelPatientReport->payment_type}}</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="paymentStatus">Payment Status</label>
+                                <p>{{ $modelPatientReport->payment_status}}</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- /.card-body -->
