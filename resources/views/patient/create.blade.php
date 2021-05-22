@@ -146,3 +146,7 @@
 	</div><!-- /.container-fluid -->
 </section>
 @endsection
+
+@push('scripts')
+<script src="{{ asset('/js/datepickers.js') }}"></script>
+@endpush
