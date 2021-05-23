@@ -130,7 +130,7 @@
                         value /= 1000
                         value += 'k'
                     }
-                    return '$' + value
+                    return 'Rs.' + value
                     }
                 }, ticksStyle)
                 }],
