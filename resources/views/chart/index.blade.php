@@ -20,9 +20,36 @@
             <!-- /.col-md-6 -->
             <div class="col-lg-12">
                 <div class="card">
+                    <div class="card-body">
+                        <div class="col-md-7">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="firstName">From Date</label>
+                                        <input type="text" id="from_date" class="form-control form-control-sm" placeholder="From Date" value="">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="firstName">To Date</label>
+                                        <input type="text" id="to_date" class="form-control form-control-sm" placeholder="To Date" value="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card -->
+            </div>
+
+            <div class="col-lg-12">
+                <div class="card">
                     <div class="card-header border-0">
                         <div class="d-flex justify-content-between">
-                            <h3 class="card-title">Report</h3>
+                            <h3 class="card-title">
+                            <b>From Date:</b> <span id="show_from_date"></span>
+                            <b>To Date:</b> <span id="show_to_date"></span>
+                            </h3>
                             <span id="total_amount"></span>
                         </div>
                     </div>
@@ -43,6 +70,11 @@
 </div>
             <!-- /.content -->
 @endsection
+
+@push('scripts')
+    <script src="{{ asset('/plugins/daterangepicker/daterangepicker.js') }}"></script>
+    <script src="{{ asset('/js/datepickers.js') }}"></script>
+@endpush
 
 @push('scripts')
 <script>
@@ -114,14 +146,18 @@
         };
         return chartData;
     } // funnction end
+    function dateDiff(fromDate,toDate) {
+        return moment(fromDate).format("YYYY-MM-DD") < moment(toDate).format("YYYY-MM-DD");
+    }
 
-    $(function () {
-        'use strict'
+    function fetchChartData(fromDate,toDate) {
+        $('#show_from_date').html(fromDate);
+        $('#show_to_date').html(toDate);
         $.ajax({
             url: 'http://127.0.0.1:8000/chart/report-data',
             type: 'GET',
             dataType: 'json',
-            // data: {param1: 'value1'},
+            data: {fromDate: fromDate, toDate:toDate},
         })
         .done(function(res) {
             var resData = res.data;
@@ -133,6 +169,28 @@
         .fail(function() {
             console.log("error");
         });
+    }
+    $(function () {
+        'use strict'
+        $('#from_date').change(function(){
+            var fromDate = $('#from_date').val();
+            var toDate = $('#to_date').val();
+            var diff =dateDiff(fromDate,toDate);
+            if(diff) {
+                fetchChartData(fromDate,toDate);
+            }
+        });
+
+        $('#to_date').change(function(){
+            var fromDate = $('#from_date').val();
+            var toDate = $('#to_date').val();
+            var diff =dateDiff(fromDate,toDate);
+            if(diff) {
+                fetchChartData(fromDate,toDate);
+            }
+        });
+
+        
         
     })
 </script>

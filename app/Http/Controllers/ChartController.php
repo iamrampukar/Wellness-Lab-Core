@@ -84,7 +84,9 @@ class ChartController extends Controller
         //
     }
 
-    public function reportData() {
+    public function reportData(Request $request) {
+        $fromDate = $request->fromDate;
+        $toDate = $request->toDate;
         $chartArray = array(
             'months'=>array(),
             'datas'=>array(),
@@ -92,7 +94,16 @@ class ChartController extends Controller
         );
 
         $SQL = <<<SQL
-            SELECT DATE_FORMAT(created_at,'%b') AS month, SUM(amount) AS total_amt FROM patient_reports GROUP BY DATE_FORMAT(created_at,'%Y-%M')
+            SELECT
+                DATE_FORMAT( created_at, '%b' ) AS 'month',
+                SUM( amount ) AS 'total_amt' 
+            FROM
+                patient_reports 
+            WHERE
+                created_at >= '$fromDate'
+                AND created_at <= '$toDate' 
+            GROUP BY
+                DATE_FORMAT( created_at, '%Y-%M' );
         SQL;
         $sqlResult = DB::select($SQL);
         $totalAmount = 0;
