@@ -17,14 +17,13 @@
 <div class="content">
     <div class="container-fluid">
         <div class="row">
-
             <!-- /.col-md-6 -->
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header border-0">
                         <div class="d-flex justify-content-between">
                             <h3 class="card-title">Report</h3>
-                            View Report
+                            <span id="total_amount"></span>
                         </div>
                     </div>
                     <div class="card-body">
@@ -59,7 +58,7 @@
         var chartData = {
             type: 'bar',
             data: {
-            labels: chartData.years,//['JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
+            labels: chartData.months,//['JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
             datasets: [
                 {
                 backgroundColor: '#007bff',
@@ -129,6 +128,7 @@
             var $getChartData = chartConfigData(resData);
             var $reportChart = $('#report-chart');
             var reportChart = new Chart($reportChart,$getChartData);
+            $('#total_amount').html('<b>Total Amount:</b> ' + parseFloat(resData.total_amt).toFixed(2));
         })
         .fail(function() {
             console.log("error");

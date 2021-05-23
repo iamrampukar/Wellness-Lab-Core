@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Chart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ChartController extends Controller
 {
@@ -84,10 +85,25 @@ class ChartController extends Controller
     }
 
     public function reportData() {
-        $data = array(
-            'years'=> ['JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
-            'datas'=>[1000, 2000, 3000, 2500, 2700, 2500, 3000], 
+        $chartArray = array(
+            'months'=>array(),
+            'datas'=>array(),
+            'total_amt'=>0
         );
-        return response()->json(['data'=>$data]);
+
+        $SQL = <<<SQL
+            SELECT DATE_FORMAT(created_at,'%b') AS month, SUM(amount) AS total_amt FROM patient_reports GROUP BY DATE_FORMAT(created_at,'%Y-%M')
+        SQL;
+        $sqlResult = DB::select($SQL);
+        $totalAmount = 0;
+        if(!empty($sqlResult)) {
+            foreach ($sqlResult as $key => $value) {
+                $chartArray['months'][] = $value->month;
+                $chartArray['datas'][] = $value->total_amt;
+                $totalAmount += $value->total_amt;
+            }
+            $chartArray['total_amt'] = $totalAmount;
+        }
+        return response()->json(['data'=>$chartArray]);
     }
 }
