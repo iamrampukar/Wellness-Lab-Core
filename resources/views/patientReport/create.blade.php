@@ -97,7 +97,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="receivingDate">Receiving Date & Time</label>
-                                <input type="text" name="receiving_date" class="form-control form-control-sm @error('receiving_date') is-invalid @enderror" id="receivingDate" placeholder="Receiving Date & Time" value="{{ old('receiving_date') }}">
+                                <input type="text" id="receivingDate" name="receiving_date" class="form-control form-control-sm @error('receiving_date') is-invalid @enderror" id="receivingDate" placeholder="Receiving Date & Time" value="{{ old('receiving_date') }}">
                                 @if($errors->has('receiving_date'))
                                     <span class="error invalid-feedback">{{ $errors->first('receiving_date') }}</span>
                                 @endif
@@ -201,3 +201,8 @@
 	</div><!-- /.container-fluid -->
 </section>
 @endsection
+
+@push('scripts')
+    <script src="{{ asset('/plugins/daterangepicker/daterangepicker.js') }}"></script>
+    <script src="{{ asset('/js/datepickers.js') }}"></script>
+@endpush
