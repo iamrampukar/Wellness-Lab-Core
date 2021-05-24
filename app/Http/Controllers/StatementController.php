@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Statement;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StatementController extends Controller
 {
@@ -14,7 +15,7 @@ class StatementController extends Controller
      */
     public function index()
     {
-        //
+        return view('statement.index');
     }
 
     /**
@@ -81,5 +82,39 @@ class StatementController extends Controller
     public function destroy(Statement $statement)
     {
         //
+    }
+
+    public function statementData(Request $request){
+        $fromDate = $request->fromDate;
+        $toDate = $request->toDate;
+        
+
+        $SQL = <<<SQL
+            SELECT
+                DATE_FORMAT( created_at, '%Y-%m-%d' ) as 'date', amount, sample_no
+            FROM
+                patient_reports 
+            WHERE
+                DATE_FORMAT( created_at, '%Y-%m-%d' ) BETWEEN '$fromDate' 
+                AND '$toDate';
+        SQL;
+
+        $SQL_TOTAL = <<<SQL
+            SELECT
+                SUM(amount) AS 'total_amt'
+            FROM
+                patient_reports 
+            WHERE
+                DATE_FORMAT( created_at, '%Y-%m-%d' ) BETWEEN '$fromDate' 
+                AND '$toDate';
+        SQL;
+        $sqlResult = DB::select($SQL);
+        $sqlTotalResult = DB::select($SQL_TOTAL)[0];
+        $chartArray = array(
+            'days'=>$sqlResult,
+            'total_amt'=>$sqlTotalResult
+        );
+       
+        return response()->json(['data'=>$chartArray]);
     }
 }

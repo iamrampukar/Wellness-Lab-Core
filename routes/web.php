@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\PatientReportController;
 use App\Http\Controllers\ChartController;
+use App\Http\Controllers\StatementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,5 +32,8 @@ Route::get('patient-report/create-report/{id}',[PatientReportController::class, 
 Route::resource('/patient-report', PatientReportController::class);
 Route::get('chart/report-data',[ChartController::class, 'reportData'])->name('chart.report-data');
 Route::resource('/chart',ChartController::class);
+
+Route::get('statement/statement-data',[StatementController::class, 'statementData'])->name('statement.statement-data');
+Route::resource('/statement',StatementController::class);
 
 require __DIR__.'/auth.php';
