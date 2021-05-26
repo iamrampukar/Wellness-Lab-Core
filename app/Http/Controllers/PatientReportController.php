@@ -26,7 +26,7 @@ class PatientReportController extends Controller
     {
         $modelPatientReport = $this->selfPatientReport->getAll();
         return view('patientReport.index',[
-            'modelPatient'=>$modelPatientReport
+            'modelPatientReport'=>$modelPatientReport
         ]);
     }
 
@@ -42,6 +42,9 @@ class PatientReportController extends Controller
 
     public function createReport($id){
         $modelPatient = $this->selfPatient->getById($id);
+        if(empty($modelPatient)) {
+            return redirect()->route('patient.index')->with('errorMessage','Recored has not found');
+        }
         return view('patientReport.create',[
             'modelPatient'=>$modelPatient
         ]);
@@ -58,6 +61,11 @@ class PatientReportController extends Controller
 
         $modelPatientReport = $this->selfPatientReport->create($request->all());
         return redirect()->route('patient-report.index');
+    }
+
+    public function reportList($id) {
+        $modelPatientReport = $this->selfPatientReport->reportList($id);
+        return view('patientReport.list',['modelPatientReport'=>$modelPatientReport]);
     }
 
     /**

@@ -31,6 +31,7 @@ Route::get('/', function () {
 Route::group(['middleware' => 'auth'], function() {
     Route::resource('/dashboard',DashboardController::class);
     Route::resource('/patient', PatientController::class);
+    Route::get('patient-report/report-list/{id}',[PatientReportController::class, 'reportList'])->name('patient-report.report-list');
     Route::get('patient-report/create-report/{id}',[PatientReportController::class, 'createReport'])->name('patient-report.create-report');
     Route::resource('/patient-report', PatientReportController::class);
     Route::get('chart/report-data',[ChartController::class, 'reportData'])->name('chart.report-data');
@@ -40,5 +41,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
     Route::post('/register', [RegisteredUserController::class, 'store'])->name('guest');
+    Route::get('/edit', [RegisteredUserController::class, 'edit'])->name('edit');
+    Route::post('/update', [RegisteredUserController::class, 'update'])->name('register.update');
 });
 require __DIR__.'/auth.php';

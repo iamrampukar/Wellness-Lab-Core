@@ -51,4 +51,23 @@ class RegisteredUserController extends Controller
 
         return redirect(RouteServiceProvider::HOME);
     }
+
+    public function edit()
+    {
+        return view('auth.edit');
+    }
+
+    public function update(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255'
+        ]);
+
+        $modelUser = User::find(Auth::id());
+        $modelUser->name = $request->name;
+        $modelUser->save();
+        event(new Registered($modelUser));
+        return redirect()->route('dashboard.index');
+
+    }
 }

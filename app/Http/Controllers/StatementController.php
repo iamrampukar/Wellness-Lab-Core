@@ -87,7 +87,6 @@ class StatementController extends Controller
     public function statementData(Request $request){
         $fromDate = $request->fromDate;
         $toDate = $request->toDate;
-        
 
         $SQL = <<<SQL
             SELECT
@@ -96,7 +95,7 @@ class StatementController extends Controller
                 patient_reports 
             WHERE
                 DATE_FORMAT( created_at, '%Y-%m-%d' ) BETWEEN '$fromDate' 
-                AND '$toDate';
+                AND '$toDate' ORDER BY id ASC;
         SQL;
 
         $SQL_TOTAL = <<<SQL

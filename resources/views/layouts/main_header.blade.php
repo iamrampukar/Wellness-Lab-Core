@@ -53,7 +53,7 @@
                         <img src="{{ asset('/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image" />
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Ram Pukar</a>
+                        <a href="#" class="d-block">{{ Auth()->user()->name }}</a>
                     </div>
                 </div>
                 <!-- Sidebar Menu -->
@@ -94,6 +94,12 @@
                             <a href="{{ route('register') }}" class="nav-link">
                             <i class="nav-icon far fa-circle text-danger"></i>
                             <p class="text">Create New User</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('edit') }}" class="nav-link">
+                            <i class="nav-icon far fa-circle text-danger"></i>
+                            <p class="text">Profile</p>
                             </a>
                         </li>
                     </ul>

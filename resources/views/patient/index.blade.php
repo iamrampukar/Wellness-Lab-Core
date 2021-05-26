@@ -14,9 +14,9 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="card">
-					<!-- <div class="card-header">
-						<h3 class="card-title">Bordered Table</h3>
-					</div> -->
+				@if($errorMessage = Session::get('errorMessage'))
+					<p class="card-title p-3 mb-2 bg-danger text-white">{{ $errorMessage  }}</p>
+				@endif
 					<!-- /.card-header -->
 					<div class="card-body">
 						<table class="table table-bordered text-nowrap">
@@ -42,7 +42,7 @@
 										<form method="post" action="{{ route('patient.destroy',$value->id) }}">
 											<a href="{{ route('patient.show',$value->id) }}" class="btn btn-info btn-xs"><i class="far fa-eye"></i></a>
 											<a href="{{ route('patient-report.create-report',$value->id) }}" class="btn btn-info btn-xs"><i class="fas fa-plus"></i></a>
-											<a href="{{ route('patient.show',$value->id) }}" class="btn btn-info btn-xs"><i class="fas fa-list"></i></a>
+											<a href="{{ route('patient-report.report-list',$value->id) }}" class="btn btn-info btn-xs"><i class="fas fa-list"></i></a>
 											<a href="{{ route('patient.edit',$value->id) }}" class="btn btn-primary btn-xs"><i class="far fa-edit"></i></a>
 											@csrf
 											@method('DELETE')

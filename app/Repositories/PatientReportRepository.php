@@ -9,7 +9,7 @@ class PatientReportRepository implements PatientReportInterface {
         $this->modelPatientReport = $modelPatientReport;
     }
     public function getAll() {
-        return $this->modelPatientReport->all();
+        return $this->modelPatientReport->orderBy('id', 'DESC')->get();
     }
 
     public function getById($id) {
@@ -29,5 +29,10 @@ class PatientReportRepository implements PatientReportInterface {
 
     public function delete($id) {
         return $this->getById($id)->delete();
+    }
+
+    public function reportList($id) {
+        $model = $this->modelPatientReport->where(['patient_id'=>$id])->orderBy('id', 'DESC')->get();
+        return $model;
     }
 }
