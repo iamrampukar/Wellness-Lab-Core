@@ -9,7 +9,7 @@ class PatientReportRepository implements PatientReportInterface {
         $this->modelPatientReport = $modelPatientReport;
     }
     public function getAll() {
-        return $this->modelPatientReport->orderBy('id', 'DESC')->get();
+        return $this->modelPatientReport->orderBy('id', 'DESC')->paginate(15);
     }
 
     public function getById($id) {
@@ -32,7 +32,7 @@ class PatientReportRepository implements PatientReportInterface {
     }
 
     public function reportList($id) {
-        $model = $this->modelPatientReport->where(['patient_id'=>$id])->orderBy('id', 'DESC')->get();
+        $model = $this->modelPatientReport->where(['patient_id'=>$id])->paginate(5);
         return $model;
     }
 }

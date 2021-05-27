@@ -9,7 +9,7 @@ class PatientRepository implements PatientInterface{
         $this->modelPatient = $modelPatient;
     }
     public function getAll() {
-        return $this->modelPatient->orderBy('id', 'DESC')->get();
+        return $this->modelPatient->orderBy('id', 'DESC')->paginate(15);
     }
 
     public function getById($id) {
